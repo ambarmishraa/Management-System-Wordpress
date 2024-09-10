@@ -38,32 +38,57 @@ jQuery(document).ready(function ($) {
     });
   });
 
-  // Handle Delete
-  $(".delete-subject")
-    .off("click")
-    .on("click", function (e) {
-      e.preventDefault();
+  // // Handle Delete
+  // $(".delete-subject")
+  //   .off("click")
+  //   .on("click", function (e) {
+  //     e.preventDefault();
 
-      if (confirm("Are you sure you want to delete?")) {
-        var $row = $(this).closest("tr");
-        var id = $(this).data("id");
+  //     if (confirm("Are you sure you want to delete?")) {
+  //       var $row = $(this).closest("tr");
+  //       var id = $(this).data("id");
 
-        $.ajax({
-          url: ajax_subject_object.subject_ajaxurl,
-          type: "POST",
-          data: {
-            action: "submit_subject_form",
-            action_type: "delete_subject",
-            id: id,
-          },
-          success: function (response) {
-            alert("Item deleted successfully");
-            $row.remove();
-          },
-          error: function () {
-            alert("An error occurred while deleting the item.");
-          },
-        });
-      }
-    });
+  //       $.ajax({
+  //         url: ajax_subject_object.subject_ajaxurl,
+  //         type: "POST",
+  //         data: {
+  //           action: "submit_subject_form",
+  //           action_type: "delete_subject",
+  //           id: id,
+  //         },
+  //         success: function (response) {
+  //           alert("Item deleted successfully");
+  //           $row.remove();
+  //         },
+  //         error: function () {
+  //           alert("An error occurred while deleting the item.");
+  //         },
+  //       });
+  //     }
+  //   });
+
+      // Handle Delete
+  $(".delete-subject").click(function (e) {
+    e.preventDefault();
+
+    if (confirm("Are you sure you want to delete?")) {
+      var $row = $(this).closest("tr");
+      var id = $(this).data("id");
+
+      $.ajax({
+        url: ajax_subject_object.subject_ajaxurl,
+        type: "POST",
+        data: {
+          action: "submit_subject_form",
+          action_type: "delete_subject",
+          id: id,
+        },
+        success: function (response) {
+          alert("Item deleted successfully");
+
+          $row.remove();
+        },
+      });
+    }
+  });
 });

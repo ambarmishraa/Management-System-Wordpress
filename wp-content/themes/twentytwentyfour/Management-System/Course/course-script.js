@@ -14,6 +14,7 @@ jQuery(document).ready(function($) {
       };
 
       if (courseId) {
+        console.log(courseId)
           data.id = courseId; 
       }
 
@@ -38,33 +39,31 @@ jQuery(document).ready(function($) {
       });
   });
 
-  // Handle delete
-  $('.delete-course').on('click', function(event) {
-      event.preventDefault();  
+  // Handle Delete
+$(".delete-course")
+.off("click")
+.on("click", function (e) {
+  e.preventDefault();
 
-      var courseId = $(this).data('id');
+  if (confirm("Are you sure you want to delete?")) {
+    var $row = $(this).closest("tr");
+    var id = $(this).data("id");
 
-      if (confirm('Are you sure you want to delete this course?')) {
-          $.ajax({
-              url: ajax_object.course_ajaxurl,
-              type: 'POST',
-              data: {
-                  action: 'submit_course_form',
-                  action_type: 'delete_course',
-                  id: courseId
-              },
-              success: function(response) {
-                  if (response.success) {
-                      alert(response.data);  
-                      location.reload();  
-                  } else {
-                      alert(response.data);  
-                  }
-              },
-              error: function() {
-                  alert('An error occurred.');
-              }
-          });
-      }
-  });
+    $.ajax({
+        url: ajax_object.course_ajaxurl,
+        type: 'POST',
+        data: {
+            action: 'submit_course_form',
+            action_type: 'delete_course',
+            id: courseId
+        },
+      success: function (response) {
+        alert("Item deleted successfully");
+   
+        $row.remove();
+      },
+
+    });
+  }
+});
 });

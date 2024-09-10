@@ -1,6 +1,5 @@
 
 jQuery(document).ready(function ($) {
-  if ($('#coordinator-form').length) {
   $("#submit-btn") .click(function (e) {
     e.preventDefault();
      
@@ -57,30 +56,32 @@ jQuery(document).ready(function ($) {
     });
   });
 
-  // Handle Delete
-  $(".delete-coordinator").off("click").on("click", function (e) {
-    e.preventDefault();
+// Handle Delete
+$(".delete-coordinator")
+.off("click")
+.on("click", function (e) {
+  e.preventDefault();
 
-    if (confirm("Are you sure you want to delete?")) {
-      var id = $(this).data("id");
+  if (confirm("Are you sure you want to delete?")) {
+    var $row = $(this).closest("tr");
+    var id = $(this).data("id");
 
-      $.ajax({
-        url: my_ajax_obj.ajaxurl,
-        type: "POST",
-        data: {
-          action: "handle_request",
+    $.ajax({
+      url: my_ajax_obj.ajaxurl,
+      type: "POST",
+      data: {
+        action: "handle_request",
           action_type: "delete",
-          id: id,
-        },
-        success: function (response) {
-          alert(response);
+        id: id,
+      },
+      success: function (response) {
+        alert("Item deleted successfully");
+   
+        $row.remove();
+      },
 
-          location.reload();
-        },
-      });
+    });
+  }
+});
 
-    }
-  
-  });
-}
 }); 
