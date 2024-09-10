@@ -1,0 +1,54 @@
+
+CREATE TABLE wp_coordinator (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL
+) ;
+
+CREATE TABLE wp_course (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    course_name VARCHAR(100) NOT NULL,
+    course_code VARCHAR(50) NOT NULL,
+    coordinator_id INT
+) ;
+
+CREATE TABLE wp_subject(
+id INT AUTO_INCREMENT PRIMARY KEY,
+subject_name VARCHAR(100) NOT NULL,
+subject_code VARCHAR(100) NOT NULL
+) ;
+
+CREATE TABLE wp_subCourse (
+id INT AUTO_INCREMENT PRIMARY KEY,
+course_id INT,
+subject_id INT
+) ;
+
+CREATE TABLE wp_student(
+id INT AUTO_INCREMENT PRIMARY KEY,
+student_name VARCHAR(100) NOT NULL,
+student_email VARCHAR(100) NOT NULL,
+course_id INT
+) ;
+
+CREATE TABLE wp_marks(
+id INT AUTO_INCREMENT PRIMARY KEY,
+student_id INT,
+subject_id INT,
+marks INT NOT NULL
+); 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

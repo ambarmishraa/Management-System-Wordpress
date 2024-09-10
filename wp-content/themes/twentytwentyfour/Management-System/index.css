@@ -1,0 +1,140 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 100vh;
+  /* background: #0f0c29;
+  background: -webkit-linear-gradient(
+    to right,
+    #24243e,
+    #302b63,
+    #0f0c29
+  );
+  background: linear-gradient(
+    to right,
+    #24243e,
+    #302b63,
+    #0f0c29
+  ); */
+  background-image: url("./assets/index.jpg");
+  background-size:cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25%;
+  margin: 10px;
+}
+
+.button-85 {
+  padding: 2.5em 5em;
+  border: none;
+  outline: none;
+  color: rgb(255, 255, 255);
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  user-select: none;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.button-85:before {
+  content: "";
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(8px);
+  width: 200%;
+  height: 200%;
+  animation: glowing-button-85 20s linear infinite;
+  border-radius: 50%;
+  transition: opacity 0.3s ease-in-out;
+}
+
+@keyframes glowing-button-85 {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.button-85:active {
+  transform: scale(0.98);
+}
+
+.button-85:focus {
+  outline: none;
+}
+
+.button-85:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #222;
+  border-radius: 10px;
+  top: 0;
+  left: 0;
+  z-index: -2;
+}
+
+.button-85.ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.button-85.ripple::before {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  width: 100px;
+  height: 100px;
+  transition: width 0.5s, height 0.5s, opacity 0.5s;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.button-85.ripple:active::before {
+  width: 300px;
+  height: 300px;
+  opacity: 1;
+  transition: 0s;
+}
